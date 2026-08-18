@@ -1,0 +1,25 @@
+# Compiled output
+*.hex
+*.elf
+*.bin
+*.o
+*.d
+*.a
+
+# Build directories
+build/
+bin/
+.pio/
+.pioenvs/
+
+# IDE & Editor files
+.vscode/
+.idea/
+*.swp
+*~
+*.bak
+
+# OS generated files
+.DS_Store
+Thumbs.db
+desktop.ini
