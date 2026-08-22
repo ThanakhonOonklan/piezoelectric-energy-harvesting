@@ -6,7 +6,7 @@
 
 ## 1. ภาพรวมโมดูล (Overview & Layout)
 
-![PowerBank Module Front](/d:/Github-project/piezoelectric-energy-harvesting/image/DIY%20PowerBank%20Module/image.png)
+![PowerBank Module Front](/d:/Github-project/piezoelectric-energy-harvesting/image/powerbank_module/powerbank_module_front_overview.png)
 
 โมดูลนี้ทำหน้าที่ 2 ระบบในบอร์ดเดียว (Bi-directional Power Management):
 1. **วงจรชาร์จแบตเตอรี่ (Step-Down Charger):** รับไฟเข้าทางพอร์ต **Type-C 5V** ชาร์จแบตเตอรี่ 3.7V สูงสุด **2.4A**
@@ -29,7 +29,7 @@
 
 ## 3. ประสิทธิภาพการแปลงพลังงาน (Conversion Efficiency)
 
-![Efficiency Table](/d:/Github-project/piezoelectric-energy-harvesting/image/DIY%20PowerBank%20Module/image%20copy%203.png)
+![Efficiency Table](/d:/Github-project/piezoelectric-energy-harvesting/image/powerbank_module/powerbank_conversion_efficiency_table.png)
 
 | Input Voltage (จากแบต) | Input Current | Output Voltage | Output Current (ไปยังโหลด) | ประสิทธิภาพการแปลง (Efficiency) |
 |:---:|:---:|:---:|:---:|:---:|
@@ -45,7 +45,7 @@
 
 ## 4. แผนผังการต่อสายและฟังก์ชันปุ่มกด (Wiring & Key Function)
 
-![Wiring Diagram](/d:/Github-project/piezoelectric-energy-harvesting/image/DIY%20PowerBank%20Module/image%20copy.png)
+![Wiring Diagram](/d:/Github-project/piezoelectric-energy-harvesting/image/powerbank_module/powerbank_module_wiring_diagram.png)
 
 ### จุดบัดกรีบนบอร์ด:
 - **`+` (BAT+):** ต่อเข้าสายสีแดงของรางถ่าน 1S2P
@@ -61,7 +61,7 @@
 
 ## 5. การปรับแรงดันชาร์จแบตเตอรี่ (Charge Voltage Adjustment)
 
-![Charge Voltage Setting](/d:/Github-project/piezoelectric-energy-harvesting/image/DIY%20PowerBank%20Module/image%20copy%202.png)
+![Charge Voltage Setting](/d:/Github-project/piezoelectric-energy-harvesting/image/powerbank_module/powerbank_charge_voltage_setting.png)
 
 - **ค่าเริ่มต้น (Default):** **4.20V** (เหมาะสำหรับแบตเตอรี่ GLINK 18650 ที่ใช้งานอยู่)
 - **ปรับเป็น 4.35V:** ทำได้โดยการแต้มตะกั่วเชื่อม Pad 4.35V (ใช้สำหรับถ่าน LiHV เท่านั้น — **ในโปรเจกต์นี้ห้ามแต้ม ให้ใช้ 4.2V ตามเดิม**)

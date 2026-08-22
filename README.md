@@ -28,7 +28,7 @@ piezoelectric-energy-harvesting/
 │       └── stage_wiring_guide.md
 │
 ├── experiments/                        # ตารางและเทมเพลตบันทึกผลการทดลองจริง
-│   ├── stage1_piezo_characterization.md# บันทึกผล Stage 1 (Piezo 4 ตัว + Rectifier + 470µF)
+│   ├── stage1_piezo_characterization.md# บันทึกผล Stage 1 (Piezo 4 ตัว + Rectifier + 470µF 16V)
 │   └── stage2_series_vs_parallel.md    # บันทึกผล Stage 2 (Series vs Parallel)
 │
 ├── doc/                                # เอกสารและ Roadmap ความปลอดภัย
@@ -36,6 +36,11 @@ piezoelectric-energy-harvesting/
 │   └── safety-guidelines.md            # กฎความปลอดภัย Li-ion & Voltage Protection
 │
 └── image/                              # รูปภาพประกอบและรูปภาพวงจรจริง
+    ├── battery_18650/                  # รูปแบตเตอรี่ GLINK และรางถ่าน 1S2P
+    ├── ltc3588_harvester/              # รูปบอร์ด CJMCU LTC3588-1, Pinout และวงจร
+    ├── powerbank_module/               # รูปโมดูล PowerBank 5V 2A, Wiring, และกราฟประสิทธิภาพ
+    ├── system_diagrams/                # แผนผังระบบรวมและภาพถ่าย Breadboard วงจรจริง
+    └── tp4056_charger/                 # รูปโมดูล TP4056 Type-C และ Pinout
 ```
 
 ---

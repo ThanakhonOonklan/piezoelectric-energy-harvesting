@@ -4,9 +4,21 @@
 
 ---
 
+## 🌟 ภาพรวมระบบ Energy Harvesting จาก Piezo
+
+![Piezo Energy Harvesting Overview](/d:/Github-project/piezoelectric-energy-harvesting/image/system_diagrams/piezo_energy_harvesting_system_overview.png)
+
+---
+
+## 📸 ภาพตัวอย่างการต่อวงจรต้นแบบบน Breadboard
+
+![Breadboard Prototype Wiring](/d:/Github-project/piezoelectric-energy-harvesting/image/system_diagrams/prototype_breadboard_wiring.jpg)
+
+---
+
 ## Stage 1 — Piezo Characterization (วัดคุณลักษณะ Piezo 4 ตัว)
 
-**เป้าหมาย:** วัดสัญญาณ AC/Pulse ที่ผ่าน Bridge Rectifier และประจุลง Capacitor $470\mu\text{F}$
+**เป้าหมาย:** วัดสัญญาณ AC/Pulse ที่ผ่าน Bridge Rectifier และประจุลง Capacitor $470\mu\text{F}$ 16V
 
 ```text
   [Piezo 1..4 Array]
@@ -20,7 +32,7 @@
           │ (+)        (-)
           ├─────────────┐
           ▼             ▼
-     [ +  470µF Cap  - ]
+     [ +  470µF 16V  - ]
           │             │
           ▼             ▼
      [ Multimeter / Oscilloscope / Safe Voltage Divider to Arduino ]
@@ -63,9 +75,9 @@
                   [ LTC3588 Board ]
                   ├── D0, D1 : Jumper เลือก VOUT (เช่น 3.3V)
                   ├── CAP    : Storage Cap ภายใน
-                  └── VIN    : 470µF Buffer Cap
+                  └── VIN    : 470µF 16V Buffer Cap
                          │
-                  [ VOUT , GND ]
+                  [ VCC/VOUT , GND ]
                          │
                          ▼
                   [ Multimeter / Load Test ]
@@ -73,7 +85,7 @@
 
 ---
 
-## Stage 4 — Battery Baseline Test (TP4056 + 18650)
+## Stage 4 — Battery Baseline Test (TP4056 + GLINK 18650)
 
 **เป้าหมาย:** ทดสอบชาร์จ 18650 ด้วยไฟ USB 5V ปกติเพื่อยืนยันสภาพแบตเตอรี่
 
@@ -82,8 +94,8 @@
          │
          ▼
   [ TP4056 Module ]
-     B+ ──────────> (+) 18650 Battery (1S2P Holder)
-     B- ──────────> (-) 18650 Battery
+     B+ ──────────> (+) 18650 Battery (1S2P Holder สายแดง)
+     B- ──────────> (-) 18650 Battery (1S2P Holder สายดำ)
 ```
 
 ---
@@ -99,7 +111,7 @@
   [ BAT+ , BAT- ]
   [ DIY PowerBank Module ]
          │
-      5V USB Output
+      5V USB Output / + 5V - Pads
          │
          ├─────────────────────────────────────────┐
          ▼                                         ▼

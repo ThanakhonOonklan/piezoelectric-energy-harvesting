@@ -6,7 +6,9 @@
 
 ## 1. สเปกแบตเตอรี่ GLINK 18650-2600
 
-![GLINK 18650 Battery](/d:/Github-project/piezoelectric-energy-harvesting/image/18650%20Li-ion%20Battery%20&%201S2P%20Holder/image%20copy.png)
+![GLINK 18650 Battery](/d:/Github-project/piezoelectric-energy-harvesting/image/battery_18650/glink_18650_2600mah_battery.png)
+
+![Battery Capacity Table](/d:/Github-project/piezoelectric-energy-harvesting/image/battery_18650/battery_18650_capacity_table.png)
 
 | พารามิเตอร์ | ค่าสเปกที่ระบุ | รายละเอียด / หมายเหตุ |
 |---|---|---|
@@ -23,7 +25,7 @@
 
 ## 2. รางถ่านแบบขนาน 1S2P (Battery Holder)
 
-![1S2P Battery Holder](/d:/Github-project/piezoelectric-energy-harvesting/image/18650%20Li-ion%20Battery%20&%201S2P%20Holder/image%20copy%202.png)
+![1S2P Battery Holder](/d:/Github-project/piezoelectric-energy-harvesting/image/battery_18650/battery_holder_1s2p_parallel.png)
 
 - **รูปแบบการต่อ:** **1S2P (1 Series, 2 Parallel)** — ขนานกันทั้ง 2 ช่อง
 - **สายไฟออก:**
