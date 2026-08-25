@@ -9,6 +9,8 @@
 ```text
 piezoelectric-energy-harvesting/
 ├── firmware/                           # โค้ด Arduino UNO (เปิดใน Arduino IDE ได้ทันที)
+│   ├── ltc3588_energy_monitor/         # โค้ดวัดระดับพลังงานสะสม (mJ, %) และนับรอบ Burst ของ LTC3588
+│   │   └── ltc3588_energy_monitor.ino
 │   ├── step_voltage_logger/            # โค้ดวัดแรงดัน Piezo / นับก้าวส่งออก Serial Plotter
 │   │   └── step_voltage_logger.ino
 │   ├── power_indicator_test/           # โค้ดทดสอบ Load 5V (LED Blink Heartbeat)
