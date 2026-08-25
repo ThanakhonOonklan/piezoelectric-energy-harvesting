@@ -53,7 +53,7 @@ piezoelectric-energy-harvesting/
 | | 1N4007 Diode | 20 ตัว | 1A 1000V ไดโอดสำหรับ Full-Bridge Rectifier |
 | | [470µF Capacitor](file:///d:/Github-project/piezoelectric-energy-harvesting/hardware/modules/capacitor.md) | 2 ตัว | **16V** Electrolytic Capacitor (Buffer) |
 | **Storage & Management**| [GLINK 18650](file:///d:/Github-project/piezoelectric-energy-harvesting/hardware/modules/battery_18650.md) | 2 ก้อน | **3.7V 2600mAh (Flat Top)** รวม 5200mAh |
-| | [1S2P Battery Holder](file:///d:/Github-project/piezoelectric-energy-harvesting/hardware/modules/battery_18650.md) | 1 อัน | รางถ่านแบบขนาน 2 ช่อง (สายแดง+/ดำ-) |
+| | [1S2P Battery Holder](file:///d:/Github-project/piezoelectric-energy-harvesting/hardware/modules/battery_18650.md) | 1 อัน | รางถ่านแบบขนาน 2 ช่อง — **สายไฟถูกต้องแล้ว (แดง=+ / ดำ=-)** *(แก้ไขการบัดกรีสายสลับขั้วจากโรงงานเรียบร้อย 2026-08-22)* |
 | | [CJMCU LTC3588-1](file:///d:/Github-project/piezoelectric-energy-harvesting/hardware/modules/ltc3588.md) | 1 บอร์ด | Harvester & Buck (1.8V, 2.5V, 3.3V, 3.6V) |
 | | [TP4056 Type-C](file:///d:/Github-project/piezoelectric-energy-harvesting/hardware/modules/tp4056.md) | 1 บอร์ด | ชาร์จ CC/CV 1A พร้อม DW01A + 8205A |
 | | [DIY PowerBank Module](file:///d:/Github-project/piezoelectric-energy-harvesting/hardware/modules/powerbank_module.md) | 1 บอร์ด | ชาร์จ 2.4A / บูสต์ไฟออก 5V 2A (Efficiency >95%) |
@@ -69,14 +69,63 @@ piezoelectric-energy-harvesting/
 
 ## 🚀 ลำดับขั้นตอนการพัฒนาและการทดลอง (Development Stages)
 
-- [ ] **Stage 1 — Piezo Characterization:** วัดแรงดัน $V_{peak}$, $V_{cap}$ ($470\mu\text{F}$ 16V) และอัตราการคายประจุจาก Piezo 4 ตัว
-- [ ] **Stage 2 — Series vs Parallel Comparison:** เปรียบเทียบประสิทธิภาพการต่อ Piezo แบบอนุกรมและขนาน
-- [ ] **Stage 3 — LTC3588 Harvesting:** ทดสอบโมดูล LTC3588 ในการแปลงและควบคุมแรงดัน
-- [ ] **Stage 4 — Battery Baseline Test:** ทดสอบชาร์จ GLINK 18650 ผ่าน TP4056 ด้วยไฟ USB 5V ปกติ
-- [ ] **Stage 5 — Storage Integration:** ประเมินและส่งพลังงานเข้าสู่ Battery System
-- [ ] **Stage 6 — Battery to 5V Output:** ทดสอบ DIY PowerBank Module แปลงไฟจาก 18650 เป็น 5V
-- [ ] **Stage 7 — Arduino & LED Verification:** นำไฟ 5V มาเลี้ยงบอร์ด Arduino UNO รันโค้ด `power_indicator_test.ino`
-- [ ] **Future Scope — Distance Sensor:** เพิ่ม HC-SR04 รันโค้ด `future_distance_trigger.ino`
+> **อัปเดตล่าสุด: 2026-08-25**
+
+### ✅ เสร็จสิ้นแล้ว (Completed)
+
+- [x] **Stage 1 — Piezo Characterization:**
+  - ต่อวงจร Piezo 4 ตัว (Parallel) + Full-Bridge Rectifier (1N4007 × 4) + 470µF Buffer Capacitor บน Breadboard เสร็จสมบูรณ์
+  - ทดสอบกดด้วยมือ: Piezo 1 ตัว ≈ 1V / Piezo 4 ตัวรวม ≈ 4V (Parallel)
+  - LED ติดสว่างได้ยืนยันว่าวงจรทำงานได้
+  - ทดสอบ Series vs Parallel เบื้องต้น (ต่อ Piezo 4 ตัว Series สังเกตพฤติกรรมแล้ว)
+
+- [x] **Stage 3 — LTC3588 Harvesting:**
+  - ได้รับบอร์ด CJMCU LTC3588-1 และทดสอบเรียบร้อย (2026-08-24)
+  - ต่อ Piezo → PZ1/PZ2 → LTC3588 → VCC ออก **3.3V** ยืนยันด้วยมิเตอร์แล้ว
+  - ไฟกระพริบแบบ UVLO Burst Mode = พฤติกรรมปกติของชิป ✅
+  - ต่อ LED สีน้ำเงินที่ขา VCC ยืนยันการทำงานด้วยตาเปล่าได้
+
+- [x] **Stage 4 — Battery Baseline Test:**
+  - ชาร์จ GLINK 18650 ผ่าน PowerBank Module Type-C จากไฟบ้าน USB 5V สำเร็จ
+  - **การต่อสายรางถ่าน (แก้ไขครั้งสุดท้าย 2026-08-25 — ถูกต้องสมบูรณ์แล้ว):**
+    - สายสีแดง = ขั้วบวก (+) → ต่อเข้า `BAT+` บนบอร์ด PowerBank ✅
+    - สายสีดำ = ขั้วลบ (-) → ต่อเข้า `BAT-` บนบอร์ด PowerBank ✅
+  - *(ปัญหาสลับขั้วจากโรงงานได้รับการแก้ไขโดยบัดกรีใหม่ถูกต้องแล้ว)*
+
+- [x] **Stage 6 — Battery to 5V Output:**
+  - ใส่ถ่าน 18650 ลงรางถ่านที่ต่อกับ PowerBank Module
+  - PowerBank Module จ่ายไฟ 5V ออกทาง USB-A ได้สำเร็จ
+  - ทดสอบการชาร์จมือถือและ Load ผ่าน USB-A แล้ว ✅
+
+- [x] **Stage 7 — Arduino & LED Verification:**
+  - ต่อสาย USB จาก PowerBank Module เข้า Arduino UNO ได้สำเร็จ
+  - อัปโหลดโค้ด `step_voltage_logger.ino` แสดงแรงดัน Piezo ผ่าน Serial Monitor ได้จริง
+  - Arduino ทำงานจากพลังงานแบตเตอรี่ 18650 โดยไม่ต้องเสียบ USB คอมพิวเตอร์ ✅
+
+### 🔄 กำลังดำเนินการ / รอดำเนินการ (In Progress / Pending)
+
+- [ ] **Stage 2 — Series vs Parallel Comparison (บันทึกผลตัวเลขจริง):**
+  - ทดสอบต่อ Piezo 4 ตัว แบบ Series และ Parallel วัด $V_{peak}$, $V_{cap}$ และบันทึกผลใน [stage2_series_vs_parallel.md](file:///d:/Github-project/piezoelectric-energy-harvesting/experiments/stage2_series_vs_parallel.md)
+
+- [ ] **Stage 1 ต่อ — บันทึกผลตัวเลขจริงใน Experiment Log:**
+  - กรอกผลการวัด $V_{peak}$, $V_{cap}$, และเวลาคายประจุจริงลงใน [stage1_piezo_characterization.md](file:///d:/Github-project/piezoelectric-energy-harvesting/experiments/stage1_piezo_characterization.md)
+
+- [ ] **Stage 5 — Full System Integration (รอซื้อ Boost Converter):**
+  - ปัญหา: LTC3588 ปล่อย 3.3V แต่ TP4056 ต้องการ 4.5V–5.5V จึงไม่สามารถชาร์จแบตจาก Piezo โดยตรงได้
+  - **แผน:** ซื้อ **MT3608 Boost Module** (~15-25 บาท) มาต่อระหว่าง LTC3588 กับ TP4056
+  - เส้นทางสมบูรณ์เมื่อได้ Boost:
+    ```
+    [ Piezo ] → [ LTC3588 (3.3V) ] → [ MT3608 Boost (5V) ] → [ TP4056 ] → [ 18650 ]
+                                                                                 ↓
+                                                                     [ PowerBank Module ]
+                                                                                 ↓
+                                                                        5V → Arduino / มือถือ
+    ```
+
+### 🔭 Future Scope
+
+- [ ] **Distance Sensor:** เพิ่ม HC-SR04 รันโค้ด `future_distance_trigger.ino`
+- [ ] **Stage 1 Bonus — ทดสอบ Capacitor 2 ตัวขนาน (940µF):** เปรียบเทียบ $V_{cap}$ และอัตราการคายประจุ
 
 ---
 

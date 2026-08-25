@@ -729,17 +729,15 @@ if (distance < 50) {
 
 ## Confirmed / Known
 
-- มี Piezo 35mm จำนวน 10 ตัว
-- เคยทดลองกดแล้วเห็นค่าแรงดันบน Arduino ประมาณ 4–5V peak
-- มี 1N4007
-- มี 470µF
-- มี 18650 จำนวน 2 ก้อน
-- มี 1S2P Holder
-- มี LTC3588 module
-- มี TP4056 USB-C
-- มี DIY PowerBank Module
-- มี Arduino UNO R3
-- มี Multimeter
+- มี Piezo 35mm จำนวน 10 ตัว (นำมาต่อขนาน 4 ตัว ทดสอบจริงได้ ~1V ต่อตัว รวม ~4V ผ่าน Rectifier)
+- วงจร Breadboard: 1N4007 Bridge Rectifier + 470µF 16V Capacitor + Resistor 200Ω + LED สีเหลือง ประกอบและทดสอบกดติดสว่างได้จริงแล้ว (2026-08-23)
+- รางถ่าน 1S2P สลับสีสายไฟจากโรงงาน: แก้ไขโดยบัดกรีสายดำเข้า `BAT+` และสายแดงเข้า `BAT-` บนบอร์ด PowerBank เรียบร้อย
+- DIY PowerBank Module ทดสอบผ่านสาย Type-C ติดไฟสีฟ้า บอร์ดไม่ร้อน ทำงานปกติ
+- มี 18650 จำนวน 2 ก้อน (GLINK 2600mAh)
+- มี TP4056 USB-C (สำหรับทดสอบ Stage 4)
+- มี Arduino UNO R3 (2 บอร์ด)
+- มี Multimeter (Analog YX-961TR & Digital DT-9205M)
+- LTC3588-1 อยู่ระหว่างรอขนส่งมาส่ง
 
 ## ยังไม่ยืนยัน
 
