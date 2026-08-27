@@ -730,28 +730,21 @@ if (distance < 50) {
 ## Confirmed / Known
 
 - มี Piezo 35mm จำนวน 10 ตัว (นำมาต่อขนาน 4 ตัว ทดสอบจริงได้ ~1V ต่อตัว รวม ~4V ผ่าน Rectifier)
-- วงจร Breadboard: 1N4007 Bridge Rectifier + 470µF 16V Capacitor + Resistor 200Ω + LED สีเหลือง ประกอบและทดสอบกดติดสว่างได้จริงแล้ว (2026-08-23)
-- รางถ่าน 1S2P สลับสีสายไฟจากโรงงาน: แก้ไขโดยบัดกรีสายดำเข้า `BAT+` และสายแดงเข้า `BAT-` บนบอร์ด PowerBank เรียบร้อย
-- DIY PowerBank Module ทดสอบผ่านสาย Type-C ติดไฟสีฟ้า บอร์ดไม่ร้อน ทำงานปกติ
-- มี 18650 จำนวน 2 ก้อน (GLINK 2600mAh)
-- มี TP4056 USB-C (สำหรับทดสอบ Stage 4)
-- มี Arduino UNO R3 (2 บอร์ด)
-- มี Multimeter (Analog YX-961TR & Digital DT-9205M)
-- LTC3588-1 อยู่ระหว่างรอขนส่งมาส่ง
+- วงจร Breadboard: 1N4007 Bridge Rectifier + 470µF 16V Capacitor + Resistor 200Ω + LED สีเหลือง ประกอบและทดสอบกดติดสว่างได้จริงแล้ว
+- รางถ่าน 1S2P ได้รับการแก้ไขสายไฟถูกต้องแล้ว (สายแดง=BAT+, สายดำ=BAT-)
+- DIY PowerBank Module ทดสอบผ่านสาย Type-C ติดไฟสีฟ้า บอร์ดไม่ร้อน ทำงานปกติ และจ่ายไฟออก 5V 2A ทางพอร์ต USB-A ได้
+- แบตเตอรี่ GLINK 18650 จำนวน 2 ก้อน (รวมความจุ 5200mAh)
+- โมดูลชาร์จ TP4056 Type-C พร้อมระบบป้องกัน Dual Protection (DW01A + 8205A)
+- โมดูล CJMCU LTC3588-1 Nanopower Energy Harvester ได้รับและทดสอบเรียบร้อย (ปล่อยไฟ 3.3V ในโหมด UVLO Burst Mode)
+- โมดูล MT3608 Boost Converter ได้รับและปรับจูน Trimpot จาก 18.0V ลงมาอยู่ที่ **5.20V DC** สำหรับป้อนเข้า TP4056 เรียบร้อย
+- **การทดสอบครบวงจร (Stage 5 Full Closed-Loop):** ยืนยันว่าพลังงานจากการเหยียบ Piezo ส่งผ่าน LTC3588 -> MT3608 -> TP4056 และชาร์จเข้าแบตเตอรี่ 18650 ที่แรงดันประมาณ **~4.00V** ได้จริงสมบูรณ์ 100%
+- Arduino UNO R3 รันโค้ด `ltc3588_energy_monitor.ino` และ `step_voltage_logger.ino` โดยใช้ไฟเลี้ยง 5V จาก PowerBank Module แบบ Standalone สำเร็จ
 
-## ยังไม่ยืนยัน
+## สิ่งที่สามารถศึกษาเพิ่มเติมในอนาคต (Future Work)
 
-- กระแสจริงที่ Piezo 4/10 ตัวสามารถจ่ายได้
-- Power จริงต่อการเหยียบ
-- Energy ต่อหนึ่ง step
-- Series หรือ Parallel ให้ output ที่เหมาะสมกว่า
-- LTC3588 module ที่มีอยู่ต่อ Battery topology แบบใด
-- PowerBank Module ที่มีอยู่มี charging circuit/protection ในตัวแบบใด
-- 18650 แต่ละก้อนมีความจุจริงเท่าไร
-- 18650 เป็น protected หรือ unprotected
-- สามารถใช้ LTC3588 → Battery topology ปัจจุบันได้หรือไม่
-
-AI ควรถือข้อมูลกลุ่มนี้เป็น **Unknowns** และไม่ควรแต่งตัวเลขขึ้นเอง
+- การวัดพลังงานเฉลี่ยต่อก้าวเปรียบเทียบระหว่างรองเท้าประเภทต่างๆ
+- การเพิ่มตัวเก็บประจุ Buffer (เช่น 1,000µF - 2,200µF หรือ Supercapacitor) เพื่อยืดระยะเวลาการปล่อยพลังงานให้นานขึ้น
+- การติดตั้งเซนเซอร์วัดระยะทาง HC-SR04 ร่วมกับโค้ด `future_distance_trigger.ino`
 
 ---
 
